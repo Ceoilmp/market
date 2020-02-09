@@ -20,7 +20,7 @@
                   ref="tabControl2" />
 
 
-      <goodsList :goodsList = goodsList></goodsList>
+      <goodsList :goodsList = goodsList :type="currentType"></goodsList>
     </scroll>
 
     <backTop @click.native="backTop" v-if="isShowBackTop"></backTop>
@@ -44,7 +44,7 @@
   import {getHomeMultidata} from "network/home";
 
   import {getGoods} from "../../common/fun";
-  import {debounce} from "../../common/utiles";
+  import {itemListenerMixin} from "../../common/mixin";
 
   export default{
     name:'Home',
@@ -59,6 +59,7 @@
         recommendView,
         featureView
       },
+      mixins:[itemListenerMixin],
       data(){
         return {
             banners:[],
@@ -82,27 +83,20 @@
         this.getHomeGoods('pop')
         this.getHomeGoods('new')
         this.getHomeGoods('sell')
-
-
-      },
-      mounted(){
-         const refresh = debounce(this.$refs.scroll.refresh,50)
-
-          this.$bus.$on('itemImageLoad',() => {
-              refresh()
-          })
       },
       computed:{
         goodsList(){
             return this.goods[this.currentType].list
         }
       },
-      activated(){
-        this.$refs.scroll.scrollTo(0,this.saveY,0)
-        this.$refs.scroll.refresh()
-      },
       deactivated(){
-        this.saveY = this.$refs.scroll.getScrollY()
+          this.saveY = this.$refs.scroll.getScrollY()
+
+          this.$bus.$off('itemImgLoad',this.itemImgListener)
+      },
+      activated(){
+        this.$refs.scroll.refresh()
+        this.$refs.scroll.scrollTo(0,this.saveY,0)
       },
       methods:{
         swiperImageLoad(){

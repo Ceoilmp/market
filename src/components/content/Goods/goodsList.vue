@@ -1,6 +1,7 @@
 <template>
     <div class="goodsList">
-      <goodsListItem v-for="item in goodsList" :goods-item=item class="item"></goodsListItem>
+      <goodsListItem v-for="item in goodsList" :image = item.image :title="item.title" :price="item.discountPrice"
+                     :fav="item.orginPrice" :type = type :id = "item.id"></goodsListItem>
     </div>
 </template>
 
@@ -18,7 +19,8 @@
                 default(){
                     return []
                 }
-            }
+            },
+            type:''
         }
     }
 </script>

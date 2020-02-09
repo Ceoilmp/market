@@ -24,7 +24,6 @@
 
     box-shadow: 0px -5px 5px rgba(0,0,0,0.05);
 
-    z-index: 8;
   }
 
 

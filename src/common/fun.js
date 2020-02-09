@@ -1,6 +1,9 @@
-import {pop} from 'assets/json/pop-goods.json'
-import {fashion} from 'assets/json/fashion-goods.json'
-import {selection} from 'assets/json/selection-goods.json'
+import {pop} from 'assets/json/pop-goods-1.json'
+import {fashion} from 'assets/json/fashion-goods-1.json'
+import {selection} from 'assets/json/selection-goods-1.json'
+import {detail_pop} from 'assets/json/detail_pop.json'
+import {detail_fashion} from 'assets/json/detail_fashion.json'
+import {detail_new} from 'assets/json/detail_new.json'
 
 export function getGoods(type,page) {
   let myGoods=new Array();
@@ -22,4 +25,19 @@ export function getGoods(type,page) {
 
   // console.log(myGoods)
   return myGoods
+}
+
+export function getDetailGoods(type,id) {
+  let iid = parseInt(id)
+  switch (type) {
+    case 'pop':
+      return detail_pop[iid-1]
+      break
+    case 'new':
+      return detail_fashion[iid-1]
+      break
+    case 'sell':
+      return detail_new[iid-1]
+      break
+  }
 }

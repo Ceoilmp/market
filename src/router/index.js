@@ -13,6 +13,7 @@ const Class = () => import('views/class/class.vue')
 const Cart = () => import('views/cart/cart.vue')
 const About = () => import('views/about/about.vue')
 const Profile = () => import('views/profile/profile.vue')
+const Detail = () => import('views/detail/Detail.vue')
 
 const routes = [
   {
@@ -38,6 +39,10 @@ const routes = [
   {
     path:'/profile',
     component:Profile
+  },
+  {
+    path:'/detail',
+    component:Detail
   }
 ]
 

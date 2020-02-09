@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  class="mainTabBar">
     <tab-bar>
       <TabBarItem path='/home'>
         <img src="~assets/img/TabBar/home-active.png" alt="" slot="TabBarIcon-active">
@@ -44,5 +44,8 @@
 </script>
 
 <style scoped>
+  .mainTabBar{
+    height: 49px;
+  }
 
 </style>
